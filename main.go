@@ -7,8 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	_ "github.com/go-sql-driver/mysql"
-
+	"github.com/go-sql-driver/mysql"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -35,8 +34,12 @@ func (d *DB) setUpSql() {
 		log.Warn("No sql url provided in env var DB_URL")
 	}
 
-	connectionStr := fmt.Sprintf("postgres://%s:%s@%s", db_user, db_password, db_url)
-	db, err := sql.Open("postgres", connectionStr)
+	sqlConfig := mysql.NewConfig()
+	sqlConfig.User = db_user
+	sqlConfig.Passwd = db_password
+	sqlConfig.Addr = db_url
+
+	db, err := sql.Open("mysql", sqlConfig.FormatDSN())
 	if err != nil {
 		log.Warn(err)
 	}
