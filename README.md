@@ -13,3 +13,8 @@ Set these environment variables
 
 1. PORT -> the port the http server will be exposed on (default 8080)
 2. SECRET_MESSAGE -> the env var where the secret is stored
+
+## Future Work
+
+1. Increase test coverage
+   a. Test sql connection function
