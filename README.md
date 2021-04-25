@@ -16,5 +16,6 @@ Set these environment variables
 
 ## Future Work
 
-1. Increase test coverage
-   a. Test sql connection function
+### Increase test coverage
+
+1. Test sql connection function
