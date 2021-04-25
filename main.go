@@ -42,6 +42,9 @@ func (d *DB) setUpSql() {
 	}
 
 	d.db = db
+
+	// Close db connection for now
+	d.db.Close()
 }
 
 func (s *SecretMessage) ServeHTTP(w http.ResponseWriter, r *http.Request) {

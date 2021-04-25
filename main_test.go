@@ -49,3 +49,7 @@ func TestSecretApi(t *testing.T) {
 		})
 	}
 }
+
+func TestSqlConnection(t *testing.T) {
+
+}
