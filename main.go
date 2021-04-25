@@ -13,7 +13,7 @@ type SecretMessage struct {
 	Secret string
 }
 
-func (s *SecretMessage) ReturnSecret(w http.ResponseWriter, r *http.Request) {
+func (s *SecretMessage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	log.Infof("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
 	w.Header().Set("Content-Type", "application/json")
 
@@ -39,7 +39,7 @@ func handleRequests() {
 
 	// API Routes
 	secret := SecretMessage{Secret: secret_message}
-	http.HandleFunc("/secret", secret.ReturnSecret)
+	http.HandleFunc("/secret", secret.ServeHTTP)
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
