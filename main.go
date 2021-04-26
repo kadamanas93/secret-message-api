@@ -56,7 +56,9 @@ func (s *SecretMessage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case http.MethodGet:
-		json.NewEncoder(w).Encode(map[string]string{"secret": s.Secret})
+		if err := json.NewEncoder(w).Encode(map[string]string{"secret": s.Secret}); err != nil {
+			log.Warn(err)
+		}
 	default:
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
