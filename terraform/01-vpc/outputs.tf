@@ -10,5 +10,9 @@ output "vpc" {
       ids   = module.vpc.public_subnets
       cidrs = module.vpc.public_subnets_cidr_blocks
     }
+    database_subnets = {
+      ids   = module.vpc.database_subnets
+      cidrs = module.vpc.database_subnets_cidr_blocks
+    }
   }
 }
