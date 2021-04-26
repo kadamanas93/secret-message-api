@@ -63,6 +63,7 @@ func (s *SecretMessage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func healthApi(w http.ResponseWriter, r *http.Request) {
+	log.Infof("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 }
