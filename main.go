@@ -62,6 +62,11 @@ func (s *SecretMessage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func healthApi(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
+}
+
 func handleRequests() {
 	// Configuration
 	var ok bool
@@ -77,6 +82,8 @@ func handleRequests() {
 	// API Routes
 	secret := SecretMessage{Secret: secret_message}
 	http.HandleFunc("/secret", secret.ServeHTTP)
+
+	http.HandleFunc("/health", healthApi)
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
