@@ -1,5 +1,8 @@
 # Module to deploy secret-message API app
 
+This terraform code creates a VPC with private and public subnet for hosting an Elastic Beanstalk
+application and RDS.
+
 ## Prerequisites
 
 ### Tools
