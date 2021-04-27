@@ -4,7 +4,7 @@ This application reads environment variable SECRET_MESSAGE and sets up an API en
 It also has an `/health` endpoint for Infra services to verify if the app is healthy.
 
 The source code is in `*.go` files while the infrastructure is setup in `terraform` directory. Make sure to read the README.md
-under that directory to correctly setup the application infrastructure.
+under that directory to correctly run the commands in the right order.
 
 ## Prerequisites
 
