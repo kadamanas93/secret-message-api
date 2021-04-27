@@ -1,26 +1,15 @@
-module "rds_security_group" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "3.18.0"
-
-  name        = "secret-app-rds-sg"
-  description = "Secret App RDS security group"
-  vpc_id      = data.terraform_remote_state.tfstates["vpc"].outputs.vpc.id
-
-  tags = local.tags
-}
-
 module "db" {
   source  = "terraform-aws-modules/rds/aws"
   version = "2.35.0"
 
-  identifier = "app-rds"
+  identifier = local.name
 
   engine            = "mysql"
   engine_version    = "5.7.19"
-  instance_class    = "db.t2.large"
+  instance_class    = "db.t2.small"
   allocated_storage = 5
 
-  name                   = "secretApp"
+  name                   = "secretApi"
   username               = "root"
   port                   = "3306"
   create_random_password = true
@@ -39,13 +28,12 @@ module "db" {
 
   tags = local.tags
 
-  subnet_ids = data.terraform_remote_state.tfstates["vpc"].outputs.vpc.database_subnets.ids
+  subnet_ids = data.terraform_remote_state.tfstates["vpc"].outputs.vpc.private_subnets.ids
 
   family               = "mysql5.7"
   major_engine_version = "5.7"
   deletion_protection  = true
   storage_encrypted    = true
-  multi_az             = true
 
   parameters = [
     {

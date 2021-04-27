@@ -1,3 +1,8 @@
+variable "secret_message" {
+  type    = string
+  default = ""
+}
+
 variable "namespace" {
   type    = string
   default = "secret"
@@ -11,6 +16,11 @@ variable "stage" {
 variable "name" {
   type    = string
   default = "api"
+}
+
+variable "region" {
+  type    = string
+  default = "us-east-2"
 }
 
 variable "availability_zones" {
