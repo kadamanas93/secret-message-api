@@ -42,6 +42,8 @@ func (d *DB) setUpSql() {
 	db, err := sql.Open("mysql", sqlConfig.FormatDSN())
 	if err != nil {
 		log.Warn(err)
+	} else {
+		log.Infof("Successfully connected to db: %s", db_url)
 	}
 
 	d.db = db
